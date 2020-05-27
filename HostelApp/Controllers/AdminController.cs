@@ -123,12 +123,19 @@ namespace HostelApp.Controllers
 
         public ActionResult Student_Details(int? id)  ///Детальное описание студентов
         {
-            var student = db.Students.Include(p => p.Group).Include(p => p.Group.Faculty).Include(p => p.Group.Faculty.University).Include(p => p.LivingRoom).Include(p => p.Region).FirstOrDefault();
-            
+            var student = db.Students.Include(p => p.Group).Include(p => p.Group.Faculty).Include(p => p.Group.Faculty.University).Include(p => p.LivingRoom).Include(p => p.Region).FirstOrDefault(s => s.Id == id);
+           
             return View(student);
         }
 
+
+
+         
+
         #endregion     /// Добавление и редактирование Студентов!!!!
+
+
+
 
 
         /// Добавление и редактирование Сотрудников!!!!
@@ -175,9 +182,9 @@ namespace HostelApp.Controllers
             return RedirectToAction("Employee_List");
         }
 
-        public ActionResult Employee_Details()  ///Детальное описание сотрудника
+        public ActionResult Employee_Details(int id=0)  ///Детальное описание сотрудника
         {
-            var employee = db.Employees.Include(p => p.LivingRoom).FirstOrDefault();
+            var employee = db.Employees.Include(p => p.LivingRoom).FirstOrDefault(s=>s.Id==id);
             return View(employee);
         }
 
@@ -198,16 +205,37 @@ namespace HostelApp.Controllers
             if (employee.Count <= 0)
             {
                 return HttpNotFound();
+                
             }
             return PartialView(employee);
         }
+
+    
 
         public ActionResult Employee_Search_Tittle()
         {
             return View();
         }
 
+
+        public ActionResult Delete_Employee(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee != null)
+            {
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Employee_List");
+        }
+
         #endregion      /// Добавелние и редактирование сотрудников    
+
+
 
         
 

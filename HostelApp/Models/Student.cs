@@ -24,6 +24,8 @@ namespace HostelApp.Models
 
 
         [Display(Name = "Дату рождения")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Заполните поле")]
         public DateTime BirthDate { get; set; }
 
@@ -39,14 +41,20 @@ namespace HostelApp.Models
 
 
         [Display(Name = "Дата подачи заявки")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Заполните поле")]
         public DateTime FillinDate { get; set; }
 
         [Display(Name = "Дата заселения")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Заполните поле")]
         public DateTime ArrivalDate { get; set; }
 
         [Display(Name = "Дата окончания срока")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Заполните поле")]
         public DateTime ExpirationDate { get; set; }
 

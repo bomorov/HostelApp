@@ -1,0 +1,34 @@
+﻿@model HostelApp.Models.LivingRoom
+
+@using HostelApp.Models
+@{
+    ViewBag.Title = "Rooms_Hostel";
+}
+
+<h2>Group_Subjects</h2>
+<fieldset>
+    <legend>Информация об общежитии</legend>
+
+    <div class="display-label"><b>Гурппа</b></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Num)
+    </div>
+
+
+
+    <div class="display-label"><b>Студенты</b></div>
+    <ul>
+        @foreach (Student c in Model.Students)
+        {
+            <li>@c.Name</li>
+        }
+    </ul>
+    <div class="display-label"><b>Сотрудники</b></div>
+    <ul>
+        @foreach (Employee c in Model.Employees)
+        {
+            <li>@c.Name</li>
+        }
+    </ul>
+
+</fieldset>

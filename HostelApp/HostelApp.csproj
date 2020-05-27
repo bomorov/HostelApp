@@ -224,6 +224,10 @@
     <Content Include="Views\Admin\Employee_Search_Tittle.cshtml" />
     <Content Include="Views\Admin\Employee_Details.cshtml" />
     <Content Include="Views\Admin\Student_Details.cshtml" />
+    <Content Include="Views\Home\Hostel_List.cshtml" />
+    <Content Include="Views\Home\Rooms_Hostel.cshtml" />
+    <Content Include="Views\Home\Room_List.cshtml" />
+    <Content Include="Views\Home\Room_List_Student.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

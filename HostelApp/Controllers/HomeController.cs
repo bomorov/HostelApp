@@ -21,7 +21,40 @@ namespace HostelApp.Controllers
         }
 
 
-        [Authorize(Roles="Commendant")]
+      
+        public ActionResult Hostel_List()  ///Список общежитий!!!
+        {
+            return View(db.Hostels.ToList());
+
+        }
+
+        public ActionResult Rooms_Hostel(int id = 0)   ///Команаты выбираемого общежития!!!
+        {
+            Hostel hostel = db.Hostels.Include(s=>s.LivingRooms).FirstOrDefault(s=>s.Id==id);
+            if (hostel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hostel);
+        }
+
+        
+        public ActionResult Room_List()
+        {
+            return View(db.LivingRooms.Include(p=>p.Hostel).ToList());
+        }
+
+        public ActionResult Room_List_Student(int id=0)
+        {
+            LivingRoom livingRoom = db.LivingRooms.Include(p => p.Students).Include(p=>p.Employees).FirstOrDefault(s => s.Id == id);
+            if (livingRoom == null)
+            {
+                return HttpNotFound();
+            }
+            return View(livingRoom);
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
