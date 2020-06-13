@@ -55,5 +55,7 @@ namespace HostelApp.Models
         [Required(ErrorMessage = "Заполните поле")]
         public int LivingRoomId { get; set; }
         public LivingRoom LivingRoom { get; set; }
+
+
     }
 }

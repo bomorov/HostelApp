@@ -42,9 +42,9 @@ namespace HostelApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Admin");
+                    db.Students.Add(student);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Admin");
             }
             return View();
         }
@@ -107,12 +107,16 @@ namespace HostelApp.Controllers
         public ActionResult Student_Search(string name)
         {
             var student = db.Students.Where(a => a.Name.Contains(name)).Include(p => p.LivingRoom).Include(p => p.Group).ToList();
+         
+
 
             if (student.Count <= 0)
             {
                 return HttpNotFound();
             }
             return PartialView(student);
+
+           
         }
 
         public ActionResult Student_Search_Tittle()
@@ -128,7 +132,13 @@ namespace HostelApp.Controllers
             return View(student);
         }
 
-
+        public ActionResult Edit_Pay_Student(Student student)
+        {
+           
+            db.Entry(student).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Student_Search_Tittle");
+        }
 
          
 
@@ -237,7 +247,9 @@ namespace HostelApp.Controllers
 
 
 
-        
+
+       
+
 
     }
 }
